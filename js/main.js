@@ -8,6 +8,10 @@ const app = new Vue({
             "img/img4.jpg",
         ],
         indexImage: 0,
+        interval: 0,
+    },
+    created(){
+        this.startLoop()
     },
     methods: {
         prevImage() {
@@ -23,8 +27,15 @@ const app = new Vue({
             }
         },
         setImage(index) {
-            this.indexImage === index;
-            console.log(index);
-        } 
+            this.indexImage = index;
+        },
+        startLoop(){
+            this.interval = setInterval(()=>{
+                this.nextImage();
+            }, 3000);
+        },
+        stopLoop(){
+            clearInterval(this.interval);
+        }
     }
 })
